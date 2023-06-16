@@ -1,0 +1,38 @@
+import random
+import time
+
+# Define the width of the road and the number of cars
+road_width = 20
+num_cars = 5
+
+# Define the characters for the road and the cars
+road_char = "-"
+car_char = "o"
+
+# Initialize the positions of the cars
+car_positions = [random.randrange(road_width) for _ in range(num_cars)]
+
+# Loop through the simulation
+while True:
+    # Clear the screen
+    print("\033c", end="")
+    
+    # Update the positions of the cars
+    for i in range(num_cars):
+        # Move the car forward
+        car_positions[i] += 1
+        
+        # If the car reaches the end of the road, wrap around to the beginning
+        if car_positions[i] >= road_width:
+            car_positions[i] = 0
+    
+    # Print out the road and the cars
+    for i in range(road_width):
+        if i in car_positions:
+            print(car_char, end="")
+        else:
+            print(road_char, end="")
+    print()
+    
+    # Wait for a short time before updating the simulation
+    time.sleep(0.1)
